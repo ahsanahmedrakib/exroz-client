@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AddServices = () => {
-  const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState("");
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/services", {
+    fetch("https://fierce-meadow-33737.herokuapp.com/services", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -17,7 +17,7 @@ const AddServices = () => {
       .then((service) => {
         if (service.insertedId) {
           setSuccess("Service added successfully");
-          reset()
+          reset();
         }
       });
   };
@@ -25,21 +25,21 @@ const AddServices = () => {
   return (
     <div>
       {success && (
-            <div
-              className="alert alert-success alert-dismissible fade show col-md-8 m-auto mt-5"
-              role="alert"
-            >
-              {success}
-              <button
-                type="button"
-                className="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          )}
+        <div
+          className="alert alert-success alert-dismissible fade show col-md-8 m-auto mt-5"
+          role="alert"
+        >
+          {success}
+          <button
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="container col-md-8 m-auto col-lg-8 py-4"

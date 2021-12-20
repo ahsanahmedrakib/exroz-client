@@ -7,7 +7,7 @@ const Pricing = () => {
   const [allPricing, setAllPricing] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/pricing")
+    fetch("https://fierce-meadow-33737.herokuapp.com/pricing")
       .then((res) => res.json())
       .then((data) => {
         setAllPricing(data);
@@ -38,7 +38,10 @@ const Pricing = () => {
                     <li> {pricing.feature4}</li>
                     <li> {pricing.feature5}</li>
                   </ul>
-                  <Link  to={`/order/${pricing._id}`} className="button hbtn hb-fill-right">
+                  <Link
+                    to={`/order/${pricing._id}`}
+                    className="button hbtn hb-fill-right"
+                  >
                     Get Now
                   </Link>
                 </div>

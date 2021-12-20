@@ -1,34 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const Service = () => {
+  const [allServices, setAllServices] = useState([]);
 
-	const [allServices, setAllServices] = useState([]);
+  useEffect(() => {
+    fetch("https://fierce-meadow-33737.herokuapp.com/services")
+      .then((res) => res.json())
+      .then((data) => setAllServices(data));
+  }, [allServices]);
 
-	useEffect(() => {
-		fetch("http://localhost:5000/services")
-		.then(res => res.json())
-		.then(data => setAllServices(data))
-	},[allServices])
-
-    return (
-        <div>
-            <div className="services section bg-grey">
-			<div className="container">
-				<div className="title-section">
-					<h3>Construction <span>Service</span></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit dolore vel voluptatum libero consectetur accusamus! Ipsum qui veniam nemo nisi.</p>
-				</div>
-				<div className="row">
-					{ allServices.map(service => <div key={service._id} className="col col-md-4 col-sm-12 col-12">
-						<div className="content">
-							<i className={`fa fa-${service.font}`}></i>
-							<h5>{service.name}</h5>
-							<p className="mb-0" style={{ textAlign: "justify" }}>{service.description.slice(0,120)}...</p>
-						</div>
-					</div>)
-					
-}
-{/* 
+  return (
+    <div>
+      <div className="services section bg-grey">
+        <div className="container">
+          <div className="title-section">
+            <h3>
+              Construction <span>Service</span>
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit dolore vel
+              voluptatum libero consectetur accusamus! Ipsum qui veniam nemo
+              nisi.
+            </p>
+          </div>
+          <div className="row">
+            {allServices.map((service) => (
+              <div key={service._id} className="col col-md-4 col-sm-12 col-12">
+                <div className="content">
+                  <i className={`fa fa-${service.font}`}></i>
+                  <h5>{service.name}</h5>
+                  <p className="mb-0" style={{ textAlign: "justify" }}>
+                    {service.description.slice(0, 120)}...
+                  </p>
+                </div>
+              </div>
+            ))}
+            {/* 
 					<div className="col col-md-4 col-sm-12 col-12">
 						<div className="content">
 							<i className="fa fa-dumbbell"></i>
@@ -65,11 +72,11 @@ const Service = () => {
 						</div>
 					</div>
 					 */}
-				</div>
-			</div>
-		</div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Service;

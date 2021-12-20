@@ -6,7 +6,7 @@ const AddPricing = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/pricing", {
+    fetch("https://fierce-meadow-33737.herokuapp.com/pricing", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -78,7 +78,7 @@ const AddPricing = () => {
           {...register("feature5", { required: true })}
           placeholder="Feature5"
         />
-       
+
         <button className="button hbtn hb-fill-right">Add</button>
       </form>
     </div>

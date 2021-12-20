@@ -78,10 +78,10 @@ const useAuth = () => {
 
   // check if a user admin or not
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://fierce-meadow-33737.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-          setAdmin(data.admin);
+        setAdmin(data.admin);
       });
   }, [user.email]);
 
