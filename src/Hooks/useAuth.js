@@ -55,7 +55,7 @@ const useAuth = () => {
 
   const saveUser = (email, displayName) => {
     const user = { email, displayName };
-    fetch("http://localhost:5000/users", {
+    fetch("https://fierce-meadow-33737.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -78,14 +78,11 @@ const useAuth = () => {
 
   // check if a user admin or not
   useEffect(() => {
-    let isMounted = true;
     fetch(`http://localhost:5000/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        if (isMounted){
-        setAdmin(data.admin)
-      }
-    });
+          setAdmin(data.admin);
+      });
   }, [user.email]);
 
   const logOut = () => {

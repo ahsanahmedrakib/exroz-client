@@ -68,7 +68,7 @@ const Login = () => {
               name="email"
               placeholder="Enter your mail"
               onChange={handleOnChange}
-              id=""
+              id="email"
             />
             <input
               className="form-control mb-3"
@@ -76,7 +76,7 @@ const Login = () => {
               placeholder="Enter your password"
               name="password"
               onChange={handleOnChange}
-              id=""
+              id="password"
             />
             <button className="btn btn-secondary">Login</button>
             <p>

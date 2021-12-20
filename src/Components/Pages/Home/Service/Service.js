@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Service = () => {
+
+	const [allServices, setAllServices] = useState([]);
+
+	useEffect(() => {
+		fetch("http://localhost:5000/services")
+		.then(res => res.json())
+		.then(data => setAllServices(data))
+	},[allServices])
+
     return (
         <div>
             <div className="services section bg-grey">
@@ -10,13 +19,16 @@ const Service = () => {
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit dolore vel voluptatum libero consectetur accusamus! Ipsum qui veniam nemo nisi.</p>
 				</div>
 				<div className="row">
-					<div className="col col-md-4 col-sm-12 col-12">
+					{ allServices.map(service => <div key={service._id} className="col col-md-4 col-sm-12 col-12">
 						<div className="content">
-							<i className="fa fa-building"></i>
-							<h5>Building</h5>
-							<p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus quisquam maxime eos, culpa minus placeat.</p>
+							<i className={`fa fa-${service.font}`}></i>
+							<h5>{service.name}</h5>
+							<p className="mb-0" style={{ textAlign: "justify" }}>{service.description.slice(0,120)}...</p>
 						</div>
-					</div>
+					</div>)
+					
+}
+{/* 
 					<div className="col col-md-4 col-sm-12 col-12">
 						<div className="content">
 							<i className="fa fa-dumbbell"></i>
@@ -52,6 +64,7 @@ const Service = () => {
 							<p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus quisquam maxime eos, culpa minus placeat.</p>
 						</div>
 					</div>
+					 */}
 				</div>
 			</div>
 		</div>

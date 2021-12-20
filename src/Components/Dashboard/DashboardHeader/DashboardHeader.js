@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
-
 const DashboardHeader = () => {
-  const { loading, admin, logOut } = useAuth();
+  const { loading, logOut } = useAuth();
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
@@ -23,11 +22,16 @@ const DashboardHeader = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {admin ? (
+          {/* {admin ? ( */}
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link text-light" to="/dashboard">
                   Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/dashboard/myorders">
+                  My Orders
                 </Link>
               </li>
               <li className="nav-item">
@@ -41,13 +45,13 @@ const DashboardHeader = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-light" to="/dashboard/makeadmin">
-                  Make Admin
+                <Link className="nav-link text-light" to="/dashboard/addpricing">
+                  Add pricing
                 </Link>
               </li>
             </ul>
-          ) : (
-            <ul className="navbar-nav mr-auto">
+          {/* ) : ( */}
+            {/* <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link text-light" to="/dashboard">
                   Dashboard
@@ -59,7 +63,7 @@ const DashboardHeader = () => {
                 </Link>
               </li>
             </ul>
-          )}
+          )} */}
           <ul className="navbar-nav me-auto">
             <button
               className="nav-link logout-button text-danger"
@@ -78,7 +82,10 @@ const DashboardHeader = () => {
           </div>
         </div>
       )}
-      
+
+
+      <Outlet />
+    
     </div>
   );
 };

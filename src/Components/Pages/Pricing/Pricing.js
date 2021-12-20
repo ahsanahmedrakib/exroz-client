@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
 
 const Pricing = () => {
+  const [allPricing, setAllPricing] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/pricing")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllPricing(data);
+      });
+  }, [allPricing]);
+
   return (
     <div>
       <Header />
@@ -15,26 +26,25 @@ const Pricing = () => {
       <div className="pricing section bg-grey">
         <div className="container">
           <div className="row">
-            <div className="col col-md-4 col-sm-12 col-12">
-              <div className="content">
-                <h5>Architecture</h5>
-                <h3>$550</h3>
-                <ul>
-                  <li> Consultating</li>
-                  <li> Revision</li>
-                  <li> Support Unlimited</li>
-                  <li> Cloud Hosting</li>
-                  <li> Free Ebook</li>
-                  <li> Tshirt Comunity</li>
-                  <li> Online Tutorial</li>
-                  <li> and Many More</li>
-                </ul>
-                <a href="hj" className="button hbtn hb-fill-right">
-                  Get Now
-                </a>
+            {allPricing.map((pricing) => (
+              <div key={pricing._id} className="col col-md-4 col-sm-12 col-12">
+                <div className="content">
+                  <h5>{pricing.pricing}</h5>
+                  <h3>${pricing.price}</h3>
+                  <ul>
+                    <li> {pricing.feature1}</li>
+                    <li> {pricing.feature2}</li>
+                    <li> {pricing.feature3}</li>
+                    <li> {pricing.feature4}</li>
+                    <li> {pricing.feature5}</li>
+                  </ul>
+                  <Link  to={`/order/${pricing._id}`} className="button hbtn hb-fill-right">
+                    Get Now
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="col col-md-4 col-sm-12 col-12">
+            ))}
+            {/* <div className="col col-md-4 col-sm-12 col-12">
               <div className="content">
                 <div className="heads">
                   <h5>Building</h5>
@@ -73,7 +83,7 @@ const Pricing = () => {
                   Get Now
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
