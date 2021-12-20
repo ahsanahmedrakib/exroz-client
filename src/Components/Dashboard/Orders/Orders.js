@@ -73,6 +73,11 @@ const Orders = () => {
           />
           <input
             className="form-control"
+            {...register("email", { required: true })}
+            defaultValue={user.email}
+          />
+          <input
+            className="form-control"
             {...register("pricing", { required: true })}
             defaultValue={order.pricing}
           />
