@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchBooks } from "../../../redux/slices/blogSlice";
 import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
 
 const Pricing = () => {
-  const [allPricing, setAllPricing] = useState([]);
+  // const [allPricing, setAllPricing] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("https://fierce-meadow-33737.herokuapp.com/pricing")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAllPricing(data);
+  //     });
+  // }, [allPricing]);
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetch("https://fierce-meadow-33737.herokuapp.com/pricing")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllPricing(data);
-      });
-  }, [allPricing]);
+      dispatch(fetchBooks());
+  }, [dispatch])
+
+  const books = useSelector((state) => state.books.discover)
+
 
   return (
     <div>
@@ -26,7 +37,7 @@ const Pricing = () => {
       <div className="pricing section bg-grey">
         <div className="container">
           <div className="row">
-            {allPricing.map((pricing) => (
+            {books.map((pricing) => (
               <div key={pricing._id} className="col col-md-4 col-sm-12 col-12">
                 <div className="content">
                   <h5>{pricing.pricing}</h5>

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import useAuth from "../../../Hooks/useAuth";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  const { user } = useAuth();
 
   useEffect(() => {
     fetch("https://fierce-meadow-33737.herokuapp.com/orders")
