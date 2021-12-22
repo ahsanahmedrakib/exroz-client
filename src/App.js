@@ -17,6 +17,7 @@ import AddPricing from "./Components/Dashboard/AddPricing/AddPricing";
 import DashboardHeader from "./Components/Dashboard/DashboardHeader/DashboardHeader";
 import DashboardHome from "./Components/Dashboard/DashboardHome/DashboardHome";
 import Orders from "./Components/Dashboard/Orders/Orders";
+import AdminRoute from "./Components/Dashboard/AdminRoute/AdminRoute";
 
 function App() {
   return (
@@ -46,7 +47,9 @@ function App() {
               path={`addservices`}
               element={<AddServices></AddServices>}
             ></Route>
-            <Route path={`makeadmin`} element={<MakeAdmin></MakeAdmin>}></Route>
+
+            <Route path={'makeadmin'} element={<AdminRoute><MakeAdmin></MakeAdmin></AdminRoute>}></Route>
+            
             <Route
               path={`manageorders`}
               element={<ManageOrders></ManageOrders>}
